@@ -5,46 +5,43 @@ import svgutils.transform as sg
 
 # TODO: Sort all this input out into more sensible generalised args
 
-fixture_id = 1 # 1 or 2
-bundle_id = 1 # 0 or 1
+bundle_id = 3 # 0, 1, 2, 3
 
 output_dir = '/home/matthew/Desktop/PhD/april_tag_bundles'
-output_filename = f'fixture_{fixture_id}_a4_100mm_tag_bundle_{bundle_id}.svg'
+output_filename = f'a4_100mm_tag_bundle_{bundle_id}.svg'
 output_filepath = os.path.join(output_dir, output_filename)
 
 tag_svg_dir = 'tag36h11/svg'
 
-if fixture_id == 1:
-    if bundle_id == 0:
-        tags = [
-            'tag36_11_00050_100mm.svg',
-            'tag36_11_00051_100mm.svg',
-            'tag36_11_00052_100mm.svg',
-            'tag36_11_00053_100mm.svg'
-        ]
-    elif bundle_id == 1:
-        tags = [
-            'tag36_11_00054_100mm.svg',
-            'tag36_11_00055_100mm.svg',
-            'tag36_11_00056_100mm.svg',
-            'tag36_11_00057_100mm.svg'
-        ]
+if bundle_id == 0:
+    tags = [
+        'tag36_11_00050_100mm.svg',
+        'tag36_11_00051_100mm.svg',
+        'tag36_11_00052_100mm.svg',
+        'tag36_11_00053_100mm.svg'
+    ]
+elif bundle_id == 1:
+    tags = [
+        'tag36_11_00054_100mm.svg',
+        'tag36_11_00055_100mm.svg',
+        'tag36_11_00056_100mm.svg',
+        'tag36_11_00057_100mm.svg'
+    ]
 
-elif fixture_id == 2:
-    if bundle_id == 0:
-        tags = [
-            'tag36_11_00058_100mm.svg',
-            'tag36_11_00059_100mm.svg',
-            'tag36_11_00060_100mm.svg',
-            'tag36_11_00061_100mm.svg'
-        ]
-    elif bundle_id == 1:
-        tags = [
-            'tag36_11_00062_100mm.svg',
-            'tag36_11_00063_100mm.svg',
-            'tag36_11_00064_100mm.svg',
-            'tag36_11_00065_100mm.svg'
-        ]
+elif bundle_id == 2:
+    tags = [
+        'tag36_11_00058_100mm.svg',
+        'tag36_11_00059_100mm.svg',
+        'tag36_11_00060_100mm.svg',
+        'tag36_11_00061_100mm.svg'
+    ]
+elif bundle_id == 3:
+    tags = [
+        'tag36_11_00062_100mm.svg',
+        'tag36_11_00063_100mm.svg',
+        'tag36_11_00064_100mm.svg',
+        'tag36_11_00065_100mm.svg'
+    ]
 
 # Create new SVG figure
 # A4:
@@ -96,7 +93,7 @@ text_y = 240 * mm_to_px # 907.087
 # Text spacing
 ts = 20
 
-txt0 = sg.TextElement(text_x, text_y + ts * 0, f'Fixture: {fixture_id} | Bundle: {bundle_id}', size=12, weight="normal")
+txt0 = sg.TextElement(text_x, text_y + ts * 0, f'Bundle: {bundle_id}', size=12, weight="normal")
 txt1 = sg.TextElement(text_x, text_y + ts * 1, f'Tag Family: {tag_svg_dir.split(sep="/")[0]}', size=12, weight="normal")
 txt2 = sg.TextElement(text_x, text_y + ts * 2, 'Tags:', size=12, weight="normal")
 txt3 = sg.TextElement(text_x + ts, text_y + ts * 3, f'TL: {tags[0].split(sep="_")[2]}', size=12, weight="normal")
@@ -115,4 +112,4 @@ fig.append([txt0, txt1, txt2, txt3, txt4, txt5, txt6, txt7, txt8])
 # Save output to SVG file
 fig.save(output_filepath)
 
-print(f'Fixture {fixture_id}, Bundle {bundle_id}, created at: {output_filepath}')
+print(f'Bundle {bundle_id}, created at: {output_filepath}')
